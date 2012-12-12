@@ -96,8 +96,9 @@
       $("#test_it").click(function(e) {
         e.preventDefault();
 
+        /* Ensure request is unique.  */
         var img = document.createElement('img');
-        img.src = "/tracking_pixel.gif";
+        img.src = "/tracking_pixel.gif?at=" + Date.now();
       });
 
       $("#test_cart").click(function(e) {
@@ -106,6 +107,13 @@
         var img = document.createElement('img');
         img.src = "/tracking_pixel.gif?event=cart_add";
       });
+
+      setTimeout(function() {
+        /* Track the tracker!! Some sample data.  */
+        var img = document.createElement('img');
+        img.src = "/tracking_pixel.gif?event=on_new_client&at=" + Date.now();
+      }, 25000);
+
     });
   </script>
 
