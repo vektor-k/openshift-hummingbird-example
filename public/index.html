@@ -104,8 +104,9 @@
       $("#test_cart").click(function(e) {
         e.preventDefault();
 
+        /* Ensure request is unique.  */
         var img = document.createElement('img');
-        img.src = "/tracking_pixel.gif?event=cart_add";
+        img.src = "/tracking_pixel.gif?event=cart_add&at=" + Date.now();
       });
 
       setTimeout(function() {
