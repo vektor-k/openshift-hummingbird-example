@@ -112,8 +112,8 @@
       setTimeout(function() {
         /* Track the tracker!! Some sample data.  */
         var img = document.createElement('img');
-        img.src = "/tracking_pixel.gif?event=on_new_client&at=" + Date.now();
-      }, 25000);
+        img.src = "/tracking_pixel.gif?at=" + Date.now();
+      }, 10000);
 
     });
   </script>
