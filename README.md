@@ -22,7 +22,7 @@ Create a nodejs-0.6 application (you can name it anything via -a)
 
 Add this `github hummingbird` repository
 
-    cd pacman
+    cd hummingbird
     git remote add upstream -m master git@github.com:ramr/openshift-hummingbird-example.git
     git pull -s recursive -X theirs upstream master
     
@@ -30,8 +30,10 @@ Then push the repo to OpenShift
 
     git push
 
-That's it, you can now checkout your application at:
+That's it, you can now checkout your application on ports 8000 or 8443
+(the experimental websockets enabled ports):
 
-    http://hummingbird-$yournamespace.rhcloud.com
+    http://hummingbird-$yournamespace.rhcloud.com:8000/
+    https://hummingbird-$yournamespace.rhcloud.com:8443/
 
 
