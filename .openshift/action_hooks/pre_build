@@ -1,0 +1,41 @@
+#!/bin/bash
+# This is a simple script and will be executed on your CI system if
+# available.  Otherwise it will execute while your application is stopped
+# before the build step.  This script gets executed directly, so it
+# could be python, php, ruby, etc.
+
+
+function download_geo_data_file() {
+   zuri="http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz"
+
+   #  Optimize downloading the data file - do it just once rather than on
+   #  every deploy/start as the repo gets blown away on a git push.
+   echo "  - Downloading GeoLiteCity.dat.gz ... "
+   cd $OPENSHIFT_DATA_DIR
+   if ! curl -L -o GeoLiteCity.dat.gz "$zuri"; then
+      echo "  - Download failed - code will download data file on deploy"
+   else
+      echo "  - Extracting GeoLiteCity.dat.gz ... "
+      gunzip GeoLiteCity.dat.gz
+   fi
+
+}  #  End of function  download_geo_data_file.
+
+
+function copy_geo_data_file() {
+   [ ! -f "$OPENSHIFT_DATA_DIR/GeoLiteCity.dat" ]  &&  download_geo_data_file
+   if [ -f "$OPENSHIFT_DATA_DIR/GeoLiteCity.dat" ]; then
+      echo "  - Copying GeoLiteCity.dat ... "
+      cp -f "$OPENSHIFT_DATA_DIR/GeoLiteCity.dat" "$OPENSHIFT_REPO_DIR"
+      echo "  - Copied GeoLiteCity.dat file to the repo directory."
+   fi
+
+} #  End of function  copy_geo_data_file.
+
+
+
+#
+# _main():
+#
+copy_geo_data_file
+

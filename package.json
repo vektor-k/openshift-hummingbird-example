@@ -1,34 +1,24 @@
 {
-  "name": "OpenShift-Sample-App",
-  "version": "1.0.0",
-  "description": "OpenShift Sample Application",
-  "keywords": [
-    "OpenShift",
-    "Node.js",
-    "application",
-    "openshift"
-  ],
-  "author": {
-    "name": "OpenShift",
-    "email": "ramr@example.org",
-    "url":  "http://www.openshift.com/"
+  "name": "hummingbird",
+  "description": "A node.js statistics server",
+  "version": "0.2.0-17",
+  "dependencies": {
+    "socket.io": "0.9.6",
+    "node-static": "0.5.9",
+    "geoip": "0.4.5"
   },
-  "homepage": "http://www.openshift.com/",
+  "domains": [
+    "demo.hummingbirdstats.com"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://gitub.com/openshift/origin-server"
+    "url": "http://github.com/mnutt/hummingbird.git"
   },
-
   "engines": {
-    "node": ">= 0.6.0",
-    "npm": ">= 1.0.0"
+    "node": ">=0.6.0"
   },
-
-  "dependencies": {
-  },
-  "devDependencies": {},
-  "bundleDependencies": [],
-
-  "private": true,
-  "main": "server.js"
+  "subdomain": "hummingbird",
+  "scripts": {
+    "start": "node server.js"
+  }
 }
